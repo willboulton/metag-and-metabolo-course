@@ -3,36 +3,43 @@ layout: index
 published: true
 ---
 
-Course-in-a-Box is a free tool for building and publishing online courses—no prior coding experience required. This guide was made using Course-in-a-Box, so what you see here is what you’ll start with. There are three modules that walk through the course creation process, all linked in the nav bar at the top of the page:
-* **[Setup](/modules/setup/getting-started/)** - Get your instance of Course-in-a-Box up and running
-* **[Content](/modules/content/markdown-and-media)** -  Update the course structure and add your copy & media
-* **[Customize](/modules/customize/favicon)** - Add some (optional) finishing touches
+This hands-on course walks through an integrated **metagenomics and metabolomics analysis** of the [DIME dataset](https://www.medrxiv.org/content/10.1101/2025.10.16.25338140v1) — a human dietary intervention study examining how bioactive compounds influence the gut microbiome and its metabolic output.
 
-<br> 
+Rather than surveying every available tool, the course follows a single end-to-end research workflow: **MATAFILER4** for MAG recovery, a custom metabolomics pipeline for LC-MS data, **SpiecEasi** for cross-domain network inference, and **R** (vegan, DESeq2, DDT) for statistical analysis. Each module combines conceptual explanation with working code you can run on the DIME data or adapt to your own datasets.
 
-#### Course-in-a-Box Courses We Love ❤️
-Here are some examples of Course-in-a-Box in the wild:
+<br>
 
-* [We Are AI](https://dataresponsibly.github.io/we-are-ai/) by Center for Responsible AI
-* [How to Talk about Race](https://how-to-talk-about-race.p2pu.org/) by Amrita Patel and Denise LaForce
-* [Leveraging Learning for Life](https://leveraging-learning.p2pu.org/) by College Unbound
-* [Making and Learning](http://p2pu.github.io/makingandlearning/) by Children’s Museum of Pittsburgh
-* [Designing for Documentation and Assessment](https://playfulmit.github.io/beyond-rubrics/) by MIT Playful Journey Lab
-* [ExplOERer Course](http://www.exploerercourse.org/en/) by Gothenburg University, Open University, and CC Poland
-* [Learning about Learning Circles](https://p2pu.github.io/learning-about-learning-circles/) by P2PU
-* [Queer Cinema for High School](https://queercinema.net/) by Sarah Schrag
+#### What you will learn
 
-<br> 
+- Recover and classify metagenome-assembled genomes (MAGs) from shotgun sequencing data
+- Process and annotate untargeted LC-MS metabolomics data, including polyphenol metabolite features
+- Perform diversity analysis, PERMANOVA, and differential abundance testing
+- Build cross-domain co-occurrence networks linking microbial taxa to metabolites using SpiecEasi
+- Understand why compositional data requires special treatment (CLR transformation, Aitchison distance)
+- Reproduce and extend findings from the DIME study on dietary bioactives and gut health
 
-#### Need some help?
-Our [community forum](https://community.p2pu.org/c/tech/course-in-a-box/78) is a great place to ask questions or find help when you get stuck. Feel free to post there anytime!
+<br>
 
-You can also hire P2PU to provide support with learning design, technical setup, course customizations, or web hosting. If you’re interested in collaborating on a project, reach out to us at thepeople@p2pu.org
+#### Prerequisites
 
-<br> 
+- Basic command-line familiarity (running commands, navigating directories)
+- Foundational biology (genes, metabolism, microbes)
+- Some experience with R or a similar statistical environment
+- No prior metagenomics or metabolomics experience required
 
-#### About Course-in-a-Box
+<br>
 
-P2PU created Course-in-a-Box in 2014 as a free and lightweight tool for building online courses. We wanted to preserve the modular structure of MOOCs outside of the bulky (and often proprietary) environment of learning/content management systems. Course-in-a-Box is open-source, and we welcome contributions [on our Github repo](https://github.com/p2pu/course-in-a-box).
+#### Course modules
 
-p.s. Designing a course for learning circles? [Check out the Learning Circle Course Creation guide](https://docs.p2pu.org/courses/creating-courses) for some best practices on course design.
+| Module | Description |
+|--------|-------------|
+| **[Introduction](/Introduction/introduction/)** | The DIME dataset, why combine metagenomics and metabolomics, and who this course is for |
+| **[Theory](/Theory/theory/)** | MAGs, untargeted metabolomics, compositional data, SpiecEasi network inference |
+| **[Setup](/Setup/setup/)** | Installing MATAFILER4, R packages (SpiecEasi, DDT, vegan), and organising your data |
+| **[Workflow](/Workflow/workflow/)** | Data processing pipeline: MAG recovery with MATAFILER4 and metabolomics preprocessing |
+| **[Analysis](/Analysis/analysis/)** | Integrated R analysis: diversity, differential abundance, SpiecEasi networks, DDT |
+| **[Conclusion](/Conclusion/conclusion/)** | Synthesising results, caveats, and applying the workflow to your own data |
+
+<br>
+
+<a class="btn btn-primary" href="/Introduction/introduction/"><i class="fa fa-play"></i> Start the course</a>
