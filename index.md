@@ -49,4 +49,4 @@ Rather than surveying every available tool, the course follows a single end-to-e
 
 <br>
 
-<a class="btn btn-primary" href="/Introduction/introduction/"><i class="fa fa-play"></i> Start the course</a>
+<a class="btn btn-primary" href="/metag-and-metabolo-course/Introduction/introduction/"><i class="fa fa-play"></i> Start the course</a>
