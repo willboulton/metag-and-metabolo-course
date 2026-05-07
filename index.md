@@ -40,13 +40,13 @@ Rather than surveying every available tool, the course follows a single end-to-e
 
 | Module | Description |
 |--------|-------------|
-| **[Introduction](/metag-and-metabolo-course/introduction/introduction/)** | The DIME dataset, why combine metagenomics and metabolomics, and who this course is for |
-| **[Theory](/metag-and-metabolo-course/theory/theory/)** | MAGs, metabolomics, compositional data, SpiecEasi network inference |
-| **[Setup](/metag-and-metabolo-course/setup/setup/)** | Installing MATAFILER4, R packages (SpiecEasi, DDT, vegan), and organising your data |
-| **[Workflow](/metag-and-metabolo-course/workflow/workflow/)** | Data processing pipeline: MAG recovery with MATAFILER4 and metabolomics preprocessing |
-| **[Analysis](/metag-and-metabolo-course/analysis/analysis/)** | Integrated R analysis: diversity, differential abundance, SpiecEasi networks, DDT |
-| **[Conclusion](/metag-and-metabolo-course/conclusion/conclusion/)** | Synthesising results, caveats, and applying the workflow to your own data |
+| **[Introduction](/metag-and-metabolo-course/modules/introduction/introduction/)** | The DIME dataset, why combine metagenomics and metabolomics, and who this course is for |
+| **[Theory](/metag-and-metabolo-course/modules/theory/theory/)** | MAGs, metabolomics, compositional data, SpiecEasi network inference |
+| **[Setup](/metag-and-metabolo-course/modules/setup/setup/)** | Installing MATAFILER4, R packages (SpiecEasi, DDT, vegan), and organising your data |
+| **[Workflow](/metag-and-metabolo-course/modules/workflow/workflow/)** | Data processing pipeline: MAG recovery with MATAFILER4 and metabolomics preprocessing |
+| **[Analysis](/metag-and-metabolo-course/modules/analysis/analysis/)** | Integrated R analysis: diversity, differential abundance, SpiecEasi networks, DDT |
+| **[Conclusion](/metag-and-metabolo-course/modules/conclusion/conclusion/)** | Synthesising results, caveats, and applying the workflow to your own data |
 
 <br>
 
-<a class="btn btn-primary" href="/metag-and-metabolo-course/introduction/introduction/"><i class="fa fa-play"></i> Start the course</a>
+<a class="btn btn-primary" href="/metag-and-metabolo-course/modules/introduction/introduction/"><i class="fa fa-play"></i> Start the course</a>
