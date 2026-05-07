@@ -40,12 +40,12 @@ Rather than surveying every available tool, the course follows a single end-to-e
 
 | Module | Description |
 |--------|-------------|
-| **[Introduction](/Introduction/introduction/)** | The DIME dataset, why combine metagenomics and metabolomics, and who this course is for |
-| **[Theory](/Theory/theory/)** | MAGs, metabolomics, compositional data, SpiecEasi network inference |
-| **[Setup](/Setup/setup/)** | Installing MATAFILER4, R packages (SpiecEasi, DDT, vegan), and organising your data |
-| **[Workflow](/Workflow/workflow/)** | Data processing pipeline: MAG recovery with MATAFILER4 and metabolomics preprocessing |
-| **[Analysis](/Analysis/analysis/)** | Integrated R analysis: diversity, differential abundance, SpiecEasi networks, DDT |
-| **[Conclusion](/Conclusion/conclusion/)** | Synthesising results, caveats, and applying the workflow to your own data |
+| **[Introduction](/metag-and-metabolo-course/Introduction/introduction/)** | The DIME dataset, why combine metagenomics and metabolomics, and who this course is for |
+| **[Theory](/metag-and-metabolo-course/Theory/theory/)** | MAGs, metabolomics, compositional data, SpiecEasi network inference |
+| **[Setup](/metag-and-metabolo-course/Setup/setup/)** | Installing MATAFILER4, R packages (SpiecEasi, DDT, vegan), and organising your data |
+| **[Workflow](/metag-and-metabolo-course/Workflow/workflow/)** | Data processing pipeline: MAG recovery with MATAFILER4 and metabolomics preprocessing |
+| **[Analysis](/metag-and-metabolo-course/Analysis/analysis/)** | Integrated R analysis: diversity, differential abundance, SpiecEasi networks, DDT |
+| **[Conclusion](/metag-and-metabolo-course/Conclusion/conclusion/)** | Synthesising results, caveats, and applying the workflow to your own data |
 
 <br>
 
