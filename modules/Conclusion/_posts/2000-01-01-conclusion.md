@@ -2,7 +2,7 @@
 title: "Conclusions: Synthesizing Results and Moving Forward"
 ---
 
-## What You've Accomplished
+## Congratulations! 
 
 Over the course of this tutorial, you've learned:
 
@@ -109,15 +109,15 @@ Combining metagenomics and metabolomics:
 
 ### 4. **Your Analysis is One Possible Interpretation**
 
-The choices you made in this analysis (parameters, thresholds, visualizations) shaped your conclusions. Different choices might yield slightly different results.
+The choices you made in this analysis (parameters, thresholds, visualisations) shaped your conclusions. Different choices might yield slightly different results.
 
 **Critical parameters you chose (directly or indirectly):**
 - Minimum MAG completeness/contamination thresholds
 - Metabolite filtering criteria (abundance, missing data)
-- Normalization methods
+- Normalisation methods
 - Statistical significance cutoffs
 - Network correlation strength filters
-- Visualization parameters
+- Visualisation parameters
 
 **What to do:** Be transparent about your choices. Better yet, conduct sensitivity analyses: how do conclusions change if you alter key thresholds?
 
@@ -254,7 +254,7 @@ As you move forward, you're now part of a growing community using these tools to
 - Environmental microbiomes (soil, ocean, etc.)
 - Synthetic microbial communities
 
-...the principles remain the same: **combine complementary data types, analyze carefully, and let biology guide your interpretation.**
+...the principles remain the same: **combine complementary data types, analyse carefully, and let biology guide your interpretation.**
 
 ---
 
