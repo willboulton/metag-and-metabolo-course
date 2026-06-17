@@ -1,5 +1,5 @@
 ---
-title: "Conclusions: Synthesizing Results and Moving Forward"
+title: "Conclusions: Synthesising Results and Moving Forward"
 ---
 
 ## Congratulations! 
@@ -127,9 +127,7 @@ The choices you made in this analysis (parameters, thresholds, visualisations) s
 
 You can now apply this pipeline to any metagenomics + metabolomics dataset:
 
-### Step-by-Step Template
-
-1. **Prepare your data** in the same format as the DIME example
+1. **Organise your data** in the same format as the DIME example
    - MAG abundance tables + taxonomy
    - Metabolite features + metadata
    - Sample metadata with experimental variables
@@ -169,31 +167,22 @@ Consider these modifications for different questions:
 
 ### Option 1: Dive Deeper into DIME
 
-- Read the full preprint and published paper (when available)
-- Extract the MAGs and conduct comparative genomics with reference genomes
-- Explore longitudinal dynamics if samples are available over time
-- Validate predictions through culture experiments
+- Extract the MAGs and conduct comparative genomics with reference genomes. We didn't discuss any comparative genomics, however, that would certainly be an interesting project you could continue yourself with the data available
+- Explore the metadata more fully - there are sleep-quality data and a much larger number of host dietary metadata available, which are worth investigating
+- Look at personalisation - can you make personalised predictions of microbiome composition changes and health based on more complex modelling than the GLMs we used?
 
-### Option 2: Extend the Analysis
-
-- **Add host data**: Do metabolites correlate with host health markers?
-- **Multi-site analysis**: Does the pattern hold in other body sites (oral, skin)?
-- **Intervention timing**: How quickly do changes occur? Reverse?
-- **Personalization**: Do predictions vary between individuals?
-
-### Option 3: Apply to Your Own Data
+### Option 2: Apply to Your Own Data
 
 - Identify a dataset combining metagenomics and metabolomics
 - Adapt this workflow to your specific question
 - Compare results to existing publications on your system
 
-### Option 4: Deepen Your Toolbox
+### Option 3: Deepen Your Toolbox
 
 Beyond this course, consider learning:
 
-- **Advanced bioinformatics**: More sophisticated assembly, binning, and functional prediction methods
-- **Advanced statistics**: Multivariate analysis, causal inference, machine learning for prediction
-- **Experimental validation**: Culturing, isotope tracing, or other methods to test mechanistic hypotheses
+- **Advanced bioinformatics**: More sophisticated assembly, binning, and functional prediction methods, potentially incorporating metatranscriptomes, and long reads. 
+- **Advanced statistics**: Multivariate analysis, causal inference, machine learning 
 - **Computational skills**: Python, shell scripting, high-performance computing for larger datasets
 
 ---
@@ -218,7 +207,6 @@ Beyond this course, consider learning:
 
 ### Online Communities
 
-- [QIIME2 forum]
 - [Biostars](https://www.biostars.org) — active Q&A forum for bioinformatics
 - [GitHub issues] — for tool-specific questions on repositories
 
@@ -234,49 +222,31 @@ Beyond this course, consider learning:
 
 ### The Big Picture
 
-This course taught you a specific workflow, but the broader skill is **thinking systematically about complex biological data**:
+This course taught you a specific workflow, but the broader skill is understanding how to analyse complex biological data - particularly where there are choices in the analysis that affect interpretation of your results:
 
-1. **Understand your data**: What does each data type measure? What are its limitations?
-2. **Design appropriate analysis**: Match analytical methods to your biological question
-3. **Interpret carefully**: Correlation suggests mechanism but doesn't prove it
-4. **Validate findings**: Use orthogonal approaches, conduct follow-up experiments
-5. **Communicate clearly**: Explain choices, limitations, and confidence in conclusions
-
-### Embracing Complexity
-
-Multi-omics is powerful because it lets us ask more sophisticated questions. But this power comes with responsibility: more data, more parameters, more opportunities for error. The best researchers are thoughtful about their choices and transparent about limitations.
-
-### Your Role
-
-As you move forward, you're now part of a growing community using these tools to understand microbial systems. Whether you work with:
-- Human microbiomes and health
-- Engineered systems (fermentation, bioremediation)
-- Environmental microbiomes (soil, ocean, etc.)
-- Synthetic microbial communities
-
-...the principles remain the same: **combine complementary data types, analyse carefully, and let biology guide your interpretation.**
+1. **Understand your data**: This is true for every single step of a workflow. Getting from sample preparation to abundance tables requires dozens of processing steps; it is a good idea to have some understanding of each. 
+2. **Interpret carefully**: Correlation suggests mechanisms, but cannot prove an association or rule out the existance of a confounding variable. A lot of metagenomic analyses are quite exploratory in nature. A bold claim might require other forms of orthogonal evidence for your findings besides correlations. 
+3. **Communicate clearly**: Explain choices, limitations, and confidence in conclusions. Often, simple visualisations and statistics (box-plots, t-tests, linear models) are preferable to complex ones because they are more easily interpretable. A complicated analysis may only be necessary if the simple statistics are unclear or underpowered. 
 
 ---
 
 ## Feedback and Improvements
 
-This course is a living document. If you:
+This course is not set in stone. If you:
 - Found sections unclear
 - Identified errors or outdated information
-- Have suggestions for additional topics
-- Successfully applied this to your data (we'd love to hear!)
+- Have suggestions for improving topics
+- Successfully applied this to your data 
 
-Please provide feedback via: [To be added: feedback mechanism/contact info]
+We would be glad to hear about it. Please provide feedback to [this email](@mailto:will.boulton@quadram.ac.uk). 
 
 ---
 
 ## Thank You
 
-Thank you for working through this course! We hope you now have both the practical skills and conceptual understanding to conduct your own metagenomics and metabolomics analyses.
+Thank you for working through this course. We hope you now have both the practical skills and conceptual understanding to conduct your own metagenomics and metabolomics analyses.
 
-The microbial world is vast and complex. With these tools, you're now equipped to explore it more deeply.
-
-**Happy analyzing!**
+**CONGRATULATIONS!**
 
 ---
 
@@ -298,15 +268,16 @@ The microbial world is vast and complex. With these tools, you're now equipped t
 
 ### Key Parameters to Report
 
-When publishing your analysis, always report:
-- MAG completeness and contamination cutoffs
-- Sequencing depth (reads per sample)
-- Assembly parameters (k-mer size, assembler)
+When publishing your analysis, report:
+- MAG completeness and contamination cutoffs - the MIMAG thresholds are always easy to defend
+- Extraction method - the Quigen extraction kits are pretty good and widely used. 
+- Sequencing depth and preprocessing - (reads per sample),  - 
+- Assembly parameters (k-mer sizes, assembler) - MEGAHIT with k=,,,,, is a default and reasonable method. You should report a few assembly quality parameters such as the N50, the percentage of reads mapped to the assembly, 
 - Metabolite filtering criteria (abundance threshold, missingness tolerance)
-- Normalization methods
-- Statistical significance cutoffs (α value, p-value correction method)
+- Normalisation methods - for targeted metabolomics, this includes the use of standards. For sequencing data, converting MAG abundance tables to CPM (counts per million) is fine. 
+- Statistical significance cutoffs (α value, p-value correction method) - a p-value of 0.05 is standard. When comparing multiple variables in a pairwise mannar, Benjimani-Hochberg q-value (again, of 0.05) is standard. 
 - Network inference method and parameters (SpiecEasi: method, lambda range)
-- Validation approach (e.g., cross-validation, independent cohort)
+- Uploaded read sequence accession numbers - you'll get these from ENA, or NCBI SRA, when you upload your raw sequencing reads. These should generally not include human-identifiable reads - make sure you filter those out using something like hostile. 
 
 ### Checklist for Your Own Analysis
 
