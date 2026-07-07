@@ -1,5 +1,5 @@
 ---
-title: "Conclusions: Synthesising Results and Moving Forward"
+title: "Conclusions and Next Steps"
 ---
 
 ## Congratulations! 
@@ -7,11 +7,11 @@ title: "Conclusions: Synthesising Results and Moving Forward"
 Over the course of this tutorial, you've learned:
 
 1. **The theory** behind metagenomics and metabolomics, their integration, and why compositional data requires special treatment
-2. **The practical workflow** for analysing real-world multi-omics data from raw reads to network-level insights
-3. **Computational tools** — MATAFILER4 for MAG recovery, the custom metabolomics pipeline, SpiecEasi for network inference, vegan and DESeq2 for statistical analysis, and DDT for automated analysis workflows
-4. **Biological interpretation** of complex, multi-layered datasets in the context of dietary bioactives and gut microbial metabolism
+2. **The practical workflow** for analysing real-world multi-omics data from raw reads to network-analysis
+3. **Computational tools** — MATAFILER4 for MAG recovery, an outline of a custom metabolomics pipeline, SpiecEasi for network inference, NetCoMi and Vegan for statistical analysis, and numerical ecology
+4. **Biological interpretation** of a complex dataset in the context of dietary bioactives and gut microbial metabolism
 
-You've worked through a complete analysis pipeline from raw sequencing data to mechanistic hypotheses about microbial metabolism, using the DIME dataset as a real-world case study.
+You've worked through a complete analysis pipeline; we've used several data products (e.g. abundance tables based on MGS, targeted metabolomics concentrations) using the DIME dataset as a real-world case study. However, you have enough theoretical knowledge to be able to run a similar analysis pipeline yourself. 
 
 ---
 
@@ -151,16 +151,6 @@ You can now apply this pipeline to any metagenomics + metabolomics dataset:
 
 6. **Validate conclusions** experimentally (e.g., isolate predicted organisms, measure metabolite production in culture)
 
-### Adapting the Workflow
-
-Consider these modifications for different questions:
-
-- **Temporal data?** Use time-series methods instead of cross-sectional analysis
-- **Multiple environments?** Stratify analysis by environment; compare network structures
-- **Host health markers?** Add the host data as additional variables in network analysis
-- **Functional data?** Use functional abundance tables (metagenomics) instead of taxonomic abundance
-- **Targeted metabolomics?** Leverage higher identification rates; use absolute quantification instead of relative
-
 ---
 
 ## Next Steps for Your Own Research
@@ -174,16 +164,14 @@ Consider these modifications for different questions:
 ### Option 2: Apply to Your Own Data
 
 - Identify a dataset combining metagenomics and metabolomics
-- Adapt this workflow to your specific question
+- Adapt this workflow to your specific question; and try to apply the knowledge from the MATAFILER pipeline (or just use the pipeline itself)
 - Compare results to existing publications on your system
-
-### Option 3: Deepen Your Toolbox
 
 Beyond this course, consider learning:
 
 - **Advanced bioinformatics**: More sophisticated assembly, binning, and functional prediction methods, potentially incorporating metatranscriptomes, and long reads. 
-- **Advanced statistics**: Multivariate analysis, causal inference, machine learning 
-- **Computational skills**: Python, shell scripting, high-performance computing for larger datasets
+- **Advanced statistics**: Multivariate analysis, causal inference, machine learning.
+- **Computational skills**: Python, shell scripting, high-performance computing for larger datasets.
 
 ---
 
@@ -212,20 +200,16 @@ Beyond this course, consider learning:
 
 ### Workshops and Training
 
-- [Bioinformatics courses]
-- [Annual microbiome conferences]
-- [Methods courses on metabolomics]
+- The GIBA training course run by the Quadram Institute. 
 
 ---
 
 ## Final Thoughts
 
-### The Big Picture
-
 This course taught you a specific workflow, but the broader skill is understanding how to analyse complex biological data - particularly where there are choices in the analysis that affect interpretation of your results:
 
 1. **Understand your data**: This is true for every single step of a workflow. Getting from sample preparation to abundance tables requires dozens of processing steps; it is a good idea to have some understanding of each. 
-2. **Interpret carefully**: Correlation suggests mechanisms, but cannot prove an association or rule out the existance of a confounding variable. A lot of metagenomic analyses are quite exploratory in nature. A bold claim might require other forms of orthogonal evidence for your findings besides correlations. 
+2. **Interpret carefully**: Correlation suggests mechanisms, but cannot prove an association or rule out the existance of a confounding variable. A lot of metagenomic analyses are quite exploratory in nature. A bold claim might require other forms of orthogonal evidence for your findings besides correlations. This is especially true when using network-based methods; remember that ultimately the raw data for these are often either a correlation or covariance matrix. 
 3. **Communicate clearly**: Explain choices, limitations, and confidence in conclusions. Often, simple visualisations and statistics (box-plots, t-tests, linear models) are preferable to complex ones because they are more easily interpretable. A complicated analysis may only be necessary if the simple statistics are unclear or underpowered. 
 
 ---
@@ -259,9 +243,7 @@ Thank you for working through this course. We hope you now have both the practic
 | MATAFILER4 | End-to-end metagenomic pipeline | Raw FASTQ reads | MAGs, abundance tables, taxonomy, functional annotation |
 | Custom metabolomics pipeline | MS data processing and annotation | Raw instrument files | Normalised feature matrix + annotations |
 | SpiecEasi | Sparse network inference | MAG/metabolite abundance tables | Conditional independence network |
-| DDT | Automated statistical analysis | phyloseq object | Diversity plots, differential abundance tables |
 | vegan | Community ecology statistics | Distance matrices | PERMANOVA, ordination |
-| DESeq2 / limma | Differential abundance | Count/intensity matrix | Log-fold changes, adjusted p-values |
 | phyloseq | Microbiome data structures | Feature + taxonomy + metadata tables | Analysis-ready objects |
 | igraph | Network analysis and visualisation | Adjacency matrices | Network plots, centrality metrics |
 | ggplot2 | Publication-quality graphics | Data frames | Figures |
@@ -271,22 +253,11 @@ Thank you for working through this course. We hope you now have both the practic
 When publishing your analysis, report:
 - MAG completeness and contamination cutoffs - the MIMAG thresholds are always easy to defend
 - Extraction method - the Quigen extraction kits are pretty good and widely used. 
-- Sequencing depth and preprocessing - (reads per sample),  - 
-- Assembly parameters (k-mer sizes, assembler) - MEGAHIT with k=,,,,, is a default and reasonable method. You should report a few assembly quality parameters such as the N50, the percentage of reads mapped to the assembly, 
+- Sequencing depth and preprocessing - (reads per sample),  - QC method used. 
+- Assembly parameters (k-mer sizes, assembler) - MEGAHIT with k=,,,,, is a default and reasonable method. You should report a few assembly quality parameters such as the N50, the percentage of reads mapped to the assembly, for instance. 
 - Metabolite filtering criteria (abundance threshold, missingness tolerance)
 - Normalisation methods - for targeted metabolomics, this includes the use of standards. For sequencing data, converting MAG abundance tables to CPM (counts per million) is fine. 
 - Statistical significance cutoffs (α value, p-value correction method) - a p-value of 0.05 is standard. When comparing multiple variables in a pairwise mannar, Benjimani-Hochberg q-value (again, of 0.05) is standard. 
 - Network inference method and parameters (SpiecEasi: method, lambda range)
 - Uploaded read sequence accession numbers - you'll get these from ENA, or NCBI SRA, when you upload your raw sequencing reads. These should generally not include human-identifiable reads - make sure you filter those out using something like hostile. 
 
-### Checklist for Your Own Analysis
-
-- [ ] Data quality assessment completed
-- [ ] Preprocessing documented and code saved
-- [ ] Analysis parameters recorded
-- [ ] Sensitivity analysis conducted
-- [ ] Results validated using independent approach
-- [ ] Figures and tables generated
-- [ ] Methods section written with sufficient detail for reproduction
-- [ ] Limitations discussed
-- [ ] Biological conclusions grounded in mechanism
