@@ -19,76 +19,51 @@ You've worked through a complete analysis pipeline; we've used several data prod
 
 ### What Did We Learn?
 
-Based on the workflow you just completed, we discovered:
+Based on the workflow you just completed, we were able to: 
 
-**[To be customized based on actual analysis results]**
+1. Follow how large-scale metagenomics and metabolomics pipelines are run. 
 
-*Example structure:*
+2. Get an overview of the community and metabolite (SCFA) profiles across the participants and interventions. 
 
-1. **Community Composition Changes**
-   - Dietary bioactives significantly altered gut microbiome composition
-   - Specific taxa expanded under treatment (e.g., butyrate-producing Faecalibacterium)
-   - Others contracted (e.g., potentially pathogenic species)
+3. Summarise the changes in the community through an ordination.
 
-2. **Metabolic Shifts**
-   - Polyphenol-derived metabolites appeared in treated samples (e.g., phenolic acids)
-   - Short-chain fatty acid (SCFA) production increased
-   - Host metabolites (e.g., secondary bile acids) changed with microbial composition
+4. Isolate the variance in the microbial community due to a per-participant effect, and separate this from the dietary intervention's effect. 
 
-3. **Organism-Metabolite Links**
-   - Network analysis connected known polyphenol-degrading taxa to polyphenol metabolite abundance
-   - SCFA-producing MAGs correlated with SCFA levels
-   - Specific MAGs showed functional annotations for genes encoding these pathways
+5. Correlate metabolites and species, and understand how generating a sparse covariance matrix reduces the false positive rate / multiple testing problem which otherwise hampers this kind of analysis. 
 
-4. **Mechanistic Understanding**
-   - The results support a model where dietary bioactives:
-     - Selectively promote certain bacterial taxa
-     - These taxa encode polyphenol-degradation and SCFA-synthesis pathways
-     - This results in both community remodeling and metabolic changes
-     - Downstream effects on host health markers (to be validated)
+We found that: 
+
+1. There were shifts in gut microbiome composition due to the high and low bioactive diets. 
+
+2. However, these changes were not as pronounced as the changes to the metabolite profiles. 
+
+3. We did not see much change in SCFA profiles, however, we were able to link bioactive intakes to certain SCFA producing species. 
+
 
 ---
 
-## How These Results Compare to the Original Study
+## Important Lessons 
 
-The DIME preprint reported similar findings:
-- [Key finding 1 from published study]
-- [Key finding 2 from published study]
-- [Key finding 3 from published study]
-
-Your analysis successfully **reproduced the main findings** using integrated metagenomics and metabolomics analysis. This demonstrates the power of combining these complementary data types.
-
-**Where your analysis might differ:**
-- Different MAG dereplication thresholds might yield slightly different genome sets
-- Metabolite annotation depends on reference databases (which continue to improve)
-- Statistical thresholds for filtering or significance are somewhat subjective choices
-
-These differences highlight important considerations: **biology is real, but data analysis involves choices that affect conclusions.**
-
----
-
-## Important Lessons Learned
-
-### 1. **Correlation ≠ Causation**
+### 1. **Correlation != Causation**
 
 Network analysis revealed correlations between organisms and metabolites, but this doesn't prove one causes the other. Consider:
 
 - **Indirect relationships**: Organism A might produce metabolite X, but metabolite X is only detected because organism B processes it further
 - **Common environmental drivers**: Two things might co-vary because they're both responding to the same ecological condition
-- **Confounding factors**: The sampling method, sample handling, or other variables might explain correlations
+- **Confounding factors**: The sampling method, sample handling, data quality (read depth, number of replicates), processing (including batch effects from some bioinformatics pipelines), and compositional factors may all generate confounding influences between factors
 
-**What to do:** Use network results as hypotheses to test experimentally, not as definitive proof.
+Use network results as hypotheses to test experimentally, not as definitive proof. 
 
-### 2. **Data Quality Determines Results**
+### 2. **Data Quality Is An Important Determining Factor**
 
 A key takeaway: your analysis is only as good as your data.
 
 - **Sequencing depth matters**: Rare organisms may not be detected in shallow samples
 - **MAG quality affects conclusions**: Fragmented or contaminated MAGs may lead to incorrect functional predictions
 - **Metabolite annotation is partial**: Unidentified features could be important players you're missing
-- **Normalization choices matter**: Different normalization approaches can affect conclusions
+- **Normalisation choices matter**: Different normalisation approaches can affect conclusions
 
-**What to do:** Always QC your data, understand your normalization choices, and document assumptions.
+**What to do:** Always QC your data, understand your normalisation choices, and document assumptions.
 
 ### 3. **Integration Adds Complexity and Power**
 
@@ -105,51 +80,20 @@ Combining metagenomics and metabolomics:
 - Correlations don't prove mechanism
 - Requires expertise in both domains
 
-**What to do:** Embrace complexity, but validate with independent evidence.
-
-### 4. **Your Analysis is One Possible Interpretation**
+### 4. **Choices Made During Analysis**
 
 The choices you made in this analysis (parameters, thresholds, visualisations) shaped your conclusions. Different choices might yield slightly different results.
 
-**Critical parameters you chose (directly or indirectly):**
+**Critical parameters (chosen directly or implicitly):**
 - Minimum MAG completeness/contamination thresholds
 - Metabolite filtering criteria (abundance, missing data)
 - Normalisation methods
-- Statistical significance cutoffs
+- Statistical significance cutoffs, multiple testing corrections
 - Network correlation strength filters
 - Visualisation parameters
 
-**What to do:** Be transparent about your choices. Better yet, conduct sensitivity analyses: how do conclusions change if you alter key thresholds?
+Ideally, you could conduct sensitivity analyses: how do conclusions change if you alter key thresholds?
 
----
-
-## Applying This Workflow to Your Own Data
-
-You can now apply this pipeline to any metagenomics + metabolomics dataset:
-
-1. **Organise your data** in the same format as the DIME example
-   - MAG abundance tables + taxonomy
-   - Metabolite features + metadata
-   - Sample metadata with experimental variables
-
-2. **Run the metagenomics analysis:**
-   ```bash
-   matafiler4 --config your_config.yaml --output your_output/
-   ```
-
-3. **Preprocess metabolomics data** to abundance tables + annotations
-
-4. **Integrate in R** using the same scripts adapted for your data:
-   ```r
-   # Modify input file paths and sample metadata
-   source("scripts/01_prepare_data.R")
-   source("scripts/03_network_analysis.R")
-   # ... etc
-   ```
-
-5. **Generate figures and tables** for publication/presentation
-
-6. **Validate conclusions** experimentally (e.g., isolate predicted organisms, measure metabolite production in culture)
 
 ---
 
@@ -171,7 +115,7 @@ Beyond this course, consider learning:
 
 - **Advanced bioinformatics**: More sophisticated assembly, binning, and functional prediction methods, potentially incorporating metatranscriptomes, and long reads. 
 - **Advanced statistics**: Multivariate analysis, causal inference, machine learning.
-- **Computational skills**: Python, shell scripting, high-performance computing for larger datasets.
+- **Computational skills**: R, Python, shell scripting, high-performance computing for larger datasets.
 
 ---
 
@@ -180,17 +124,15 @@ Beyond this course, consider learning:
 ### Key Papers
 
 **Metagenomics foundations:**
-- [Key metagenomics review to add]
-- [Assembly/binning methodology to add]
-- [MAG quality considerations to add]
+- [Quince et al. (2017) Review](https://doi.org/10.1038/nbt.3935)
+- [The CAMI2 Assembly and Binning Competitions](https://doi.org/10.1038/s41592-022-01431-4)
+- [MIMAG Standards](https://doi.org/10.1038/nbt.3893)
 
 **Metabolomics foundations:**
-- [Key metabolomics review to add]
-- [Metabolite annotation approaches to add]
+- [Bauermeister et al. (2021) Review](https://doi.org/10.1038/s41579-021-00621-9)
 
 **Multi-omics integration:**
-- [SpiecEasi methodology paper]
-- [Multi-omics integration review to add]
+- [SpiecEasi methodology paper](https://doi.org/10.1371/journal.pcbi.1004226)
 - [The DIME study preprint](https://www.medrxiv.org/content/10.1101/2025.10.16.25338140v1)
 
 ### Online Communities
@@ -216,7 +158,7 @@ This course taught you a specific workflow, but the broader skill is understandi
 
 ## Feedback and Improvements
 
-This course is not set in stone. If you:
+If you:
 - Found sections unclear
 - Identified errors or outdated information
 - Have suggestions for improving topics
