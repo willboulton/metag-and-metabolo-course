@@ -89,6 +89,10 @@ cat(length(top_species), "species selected,",
     length(hb_samples), "HB samples,", length(lb_samples), "LB samples\n")
 ```
 
+```
+## 75 species selected, 20 HB samples, 20 LB samples
+```
+
 ### 3.2 Build the SCFA matrix
 
 **Matrix B** is the matrix of SCFAs.
@@ -104,6 +108,11 @@ scfa_mat <- tbl_scfa |>
 
 cat("SCLFA feature matrix:", nrow(scfa_mat), "samples x", ncol(scfa_mat), "features\n")
 cat("Features:", paste(colnames(scfa_mat), collapse = ", "), "\n")
+```
+
+```
+## SCLFA feature matrix: 100 samples x 10 features
+## Features: Acetate, Propionate, Butyrate, Isobutyrate, 2-methylbutyrate,  Isovalerate, Valerate, 3-methylvalerate, Isocaproate, Caproate
 ```
 
 ### 3.3 Align all matrices per arm
@@ -162,6 +171,11 @@ cat("HB stability:", SpiecEasi::getStability(se_hb))
 cat("LB stability:", SpiecEasi::getStability(se_lb))
 ```
 
+```
+## HB stability: 0.03053221
+## LB stability: 0.03628011
+```
+
 How long did this step take for you? I found this took less than a minute.
 However, a higher stability (closer to 0.05) is better. 
 
@@ -196,6 +210,11 @@ n_edges <- function(a) (sum(a != 0) - nrow(a)) / 2
 
 cat("HB:", nrow(ass_hb), "nodes,", n_edges(ass_hb), "edges\n")
 cat("LB:", nrow(ass_lb), "nodes,", n_edges(ass_lb), "edges\n")
+```
+
+```
+## HB: 85 nodes, 58 edges
+## LB: 85 nodes, 80 edges
 ```
 
 ---
@@ -338,7 +357,7 @@ plot(
 )
 ```
 
-
+![Paired SPIEC-EASI co-occurrence networks for the High Bioactive and Low Bioactive arms]({{ site.baseurl }}/img/analysis/simple-networks-netcomi.png)
 
 We can also take a look at some of the network statistics: degree distributions of nodes is plotted below.
 
@@ -362,6 +381,8 @@ ggplot(tbl_deg, aes(x = degree, fill = arm)) +
        x = "Degree", y = "Count", fill = "Diet arm") +
   THEME_DIME
 ```
+
+![Histogram of node degree by node type and diet arm]({{ site.baseurl }}/img/analysis/simple-networks-degree-distribution.png)
 
 The degrees of the nodes are also higher in general for the low-bioactive arm, i.e. when there are fewer bioactives, 
 there are more associations between species (and between species - bioactives). The SCFAs have high degree - they're
@@ -392,6 +413,14 @@ for (r in rns) {
 }
 
 ```
+
+```
+## [1] "Bacteria;Firmicutes_A;Clostridia;Lachnospirales;Lachnospiraceae;Roseburia;Roseburia intestinalis"
+## [1] "Acetate"
+## [1] 0.03005906
+```
+
+The Low Bioactive network has one species-SCFA edge above this threshold (shown above); the High Bioactive network's loop produced no matches, i.e. no species-SCFA associations passed the 0.0001 cutoff in that arm.
 
 ## Expected Results from DIME Analysis
 

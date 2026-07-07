@@ -40,6 +40,18 @@ tbl_sample_metadata <- read_metadata("../data/source/sample_metadata.csv")
 tbl_sample_metadata |> head()
 ```
 
+```
+## # A tibble: 6 × 8
+##   sample_id participant time_point sample_group sample_arm  sequence diet    
+##   <chr>     <chr>       <chr>      <chr>        <chr>       <chr>    <chr>   
+## 1 01-MP     01          MP         midpoint     midpoint    low_high midpoint
+## 2 01-V1     01          V1         before       before_low  low_high low     
+## 3 01-V2     01          V2         after        after_low   low_high low     
+## 4 01-V3     01          V3         before       before_high low_high high    
+## 5 01-V4     01          V4         after        after_high  low_high high    
+## 6 02-MP     02          MP         midpoint     midpoint    high_low midpoint
+## # ℹ 1 more variable: baseline <lgl>
+```
 
 - `sample_id` - matches the column names in the abundance matrix
 - `participant` - participant identifier (crossover design, so each person appears multiple
@@ -65,6 +77,10 @@ tbl_species <- read_taxa("../data/source/microbiome/taxa/MGS.matL6.txt") |>
 dim(tbl_species)   # rows = species, cols = 1 name column + samples
 ```
 
+```
+## [1] 815 101
+```
+
 ### 2.3 Relative abundance (total-sum scaling)
 
 Sequencing depth varies between samples, so raw read counts are not directly comparable.
@@ -82,6 +98,10 @@ rel_matrix <- prop.table(count_matrix, margin = 2)   # column proportions
 
 # Confirm: every sample column should now sum to 1
 range(colSums(rel_matrix))
+```
+
+```
+## [1] 1 1
 ```
 
 ---
@@ -117,6 +137,14 @@ bc_dist <- vegan::vegdist(t(rel_after), method = "bray")
 as.matrix(bc_dist)[1:4, 1:4] |> round(3)
 ```
 
+```
+##       01-V1 01-V2 01-V4 02-V1
+## 01-V1 0.000 0.198 0.270 0.751
+## 01-V2 0.198 0.000 0.272 0.769
+## 01-V4 0.270 0.272 0.000 0.713
+## 02-V1 0.751 0.769 0.713 0.000
+```
+
 **Exercise:** Try using some other distance functions in `vegdist` and see what the differences are. Which are suitable for microbiome data? 
 
 ### 3.2 Run PCoA with `cmdscale()`
@@ -132,6 +160,11 @@ pcoa_result <- cmdscale(bc_dist, k = 2, eig = TRUE)
 eig <- pcoa_result$eig
 pct_var <- round(eig[1:2] / sum(eig[eig > 0]) * 100, 1)
 cat("PC1:", pct_var[1], "%\nPC2:", pct_var[2], "%\n")
+```
+
+```
+## PC1: 16 %
+## PC2: 8.7 %
 ```
 
 ### 3.3 Build the PCoA plot
@@ -181,6 +214,8 @@ plt_pcoa <- ggplot(tbl_pcoa, aes(x = PC1, y = PC2, colour = Diet)) +
 plt_pcoa
 ```
 
+![PCoA of species Bray-Curtis dissimilarity, coloured by diet arm with participant trajectories]({{ site.baseurl }}/img/analysis/beta-diversity-pcoa.png)
+
 This has plotted the PCoA and linked points from the same participant. 
 You can see quite clearly that there is a large per-participant effect. 
 It's harder to spot a pattern in the interventions. 
@@ -219,6 +254,10 @@ mat_dbrda  <- t(rel_dbrda)   # samples x species
 dim(mat_dbrda)
 ```
 
+```
+## [1]  60 815
+```
+
 ### 4.2 Run dbRDA with `capscale()`
 
 `capscale()` accepts a matrix (or data frame) of community data on the left side of the
@@ -248,6 +287,12 @@ cat(sprintf(
 ))
 ```
 
+```
+## Conditioned (participant effect removed): 83.4%
+## Constrained by diet:                      1.0%
+## Residual (unexplained):                   15.6%
+```
+
 ### 4.3 Extract scores with `scores()`
 
 `scores()` retrieves the coordinates for sites (samples), centroids (group means), and
@@ -271,6 +316,19 @@ tbl_centroids <- dbrda_scores$centroids |>
   mutate(label = gsub("^Diet", "", label))   # strip "Diet" prefix added by vegan
 
 head(tbl_sites, 4)
+```
+
+```
+##   sample_id        CAP1       CAP2 participant time_point sample_group
+## 1     01-V1 -0.05230122  0.3020460          01         V1       before
+## 2     01-V2 -0.90025028  0.4364091          01         V2        after
+## 3     01-V4  0.95255150 -0.7384551          01         V4        after
+## 4     02-V1 -0.57816531  1.1147867          02         V1       before
+##    sample_arm sequence diet baseline           Diet
+## 1  before_low low_high  low     TRUE       Baseline
+## 2   after_low low_high  low    FALSE  Low Bioactive
+## 3  after_high low_high high    FALSE High Bioactive
+## 4 before_high high_low high     TRUE       Baseline
 ```
 
 ### 4.4 Build the base dbRDA plot
@@ -301,6 +359,8 @@ plt_dbrda <- ggplot(tbl_sites, aes(x = CAP1, y = CAP2, colour = Diet)) +
 plt_dbrda
 ```
 
+![dbRDA of species composition constrained by diet, with participant effect removed]({{ site.baseurl }}/img/analysis/beta-diversity-dbrda-base.png)
+
 ### 4.5 Add species vectors with `envfit()`
 
 `envfit()` fits each species vector onto the ordination by regression and tests
@@ -321,6 +381,10 @@ sig_pvals   <- species_fit$vectors$pvals
 sig_arrows  <- arrow_coords[sig_pvals <= 0.05, , drop = FALSE]
 
 cat(sum(sig_pvals <= 0.05), "of", length(sig_pvals), "species significantly associated\n")
+```
+
+```
+## 5 of 815 species significantly associated
 ```
 
 Exercise: What are the six significantly associated species? 
@@ -344,6 +408,19 @@ tbl_arrows <- sig_arrows |>
 head(tbl_arrows, 4)
 ```
 
+```
+##                                                                                                raw_name
+## 1           Bacteria;Firmicutes_A;Clostridia;Lachnospirales;Lachnospiraceae;CAG-127;CAG-127 sp900319515
+## 2 Bacteria;Firmicutes_A;Clostridia;Lachnospirales;Lachnospiraceae;Butyribacter;Butyribacter sp000436755
+## 3      Bacteria;Bacteroidota;Bacteroidia;Bacteroidales;Bacteroidaceae;Bacteroides;Bacteroides eggerthii
+## 4   Bacteria;Firmicutes_A;Clostridia;Lachnospirales;Lachnospiraceae;Butyribacter;Butyribacter intestini
+##        CAP1       CAP2                    taxon
+## 1  1.377960 -1.4842113      CAG-127 sp900319515
+## 2  2.000000 -1.0840485 Butyribacter sp000436755
+## 3 -1.998979  0.1680821    Bacteroides eggerthii
+## 4  1.673647 -1.4716780   Butyribacter intestini
+```
+
 ```r
 plt_dbrda_annotated <- plt_dbrda +
   geom_segment(
@@ -364,6 +441,8 @@ plt_dbrda_annotated <- plt_dbrda +
 
 plt_dbrda_annotated
 ```
+
+![dbRDA plot annotated with significant species vectors]({{ site.baseurl }}/img/analysis/beta-diversity-dbrda-annotated.png)
 
 We see our friends the Butyribacter are two of the six species significantly associated with the constrained axes, and point towards the High Bioactive arm. 
 
