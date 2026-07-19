@@ -1,0 +1,115 @@
+# Bioschemas "TrainingMaterial" profile, v1.0-RELEASE
+#   https://bioschemas.org/profiles/TrainingMaterial/1.0-RELEASE
+# Rendered as JSON-LD in the page <head> by _includes/bioschemas.html.
+# The whole file is emitted verbatim via Jekyll's `jsonify` filter, so its
+# shape must stay a valid schema.org/LearningResource object. Comments are stripped.
+"@context": "https://schema.org"
+"@type": "LearningResource"
+
+# Bioschemas conformance (Minimum). The value MUST be the versioned profile URL.
+# The key must be the full Dublin Core term URL, not a CURIE.
+"http://purl.org/dc/terms/conformsTo":
+  "@type": "CreativeWork"
+  "@id": "https://bioschemas.org/profiles/TrainingMaterial/1.0-RELEASE"
+
+# --- Minimum properties ---
+name: "Reanalysing the DIME Dataset: A case-study in Metagenomics and Metabolomics Analysis"
+description: >-
+  An integrated metagenomics and metabolomics analysis course built around the
+  DIME human dietary-intervention dataset. It follows a single end-to-end research
+  workflow — MAG recovery with MATAFILER4, LC-MS metabolomics preprocessing,
+  cross-domain network inference with SpiecEasi, and statistical analysis in R —
+  combining conceptual explanation with runnable code.
+# Canonical public URL. Update if you rename the repo or use a custom domain.
+url: "https://toniher.github.io/metag-and-metabolo-course/"
+keywords:
+  - metagenomics
+  - metabolomics
+  - microbiome
+  - gut microbiome
+  - bioinformatics
+  - metagenome-assembled genomes
+  - LC-MS
+  - short-chain fatty acids
+  - network inference
+  - numerical ecology
+  - differential abundance
+
+# --- Recommended properties ---
+license: "https://creativecommons.org/licenses/by-sa/4.0/"
+inLanguage: "en"
+version: "1.0"
+dateModified: "2026-07-19"
+learningResourceType: "tutorial"
+educationalLevel: "Intermediate"
+
+# Edit to your hosting institution / training programme.
+author:
+  - "@type": "Organization"
+    name: "GIBA course"
+
+audience:
+  "@type": "EducationalAudience"
+  educationalRole: "Researchers, bioinformaticians, and graduate students working with shotgun metagenomics and metabolomics"
+
+# Learning outcomes (schema.org/teaches).
+teaches:
+  - "Recover and annotate metagenome-assembled genomes (MAGs) from short-read shotgun sequencing data"
+  - "Process and annotate targeted and untargeted LC-MS metabolomics data, including polyphenol metabolites and short-chain fatty acids (SCFAs)"
+  - "Perform alpha and beta diversity analysis, PERMANOVA, and differential abundance testing"
+  - "Build cross-domain co-occurrence networks linking microbial taxa to metabolites using SpiecEasi"
+  - "Reproduce and extend findings from the DIME study on dietary bioactives and gut health"
+
+# Prerequisites — in TrainingMaterial these go under competencyRequired
+# (coursePrerequisites is a Course-only property).
+competencyRequired:
+  - "Foundational biology (genes, metabolism, microbes)"
+  - "Basic command-line familiarity (running commands, navigating directories)"
+  - "Some experience with R or a similar statistical environment"
+
+about:
+  - "Metagenomics"
+  - "Metabolomics"
+  - "Gut microbiome"
+  - "Compositional data analysis"
+
+# Tools / software actively used in the material (schema.org/mentions).
+mentions:
+  - "@type": "SoftwareApplication"
+    name: "MATAFILER4"
+    description: "MAG recovery pipeline for short-read shotgun metagenomics (HPC)."
+    url: "https://github.com/hildebra/MATAFILER"
+  - "@type": "SoftwareApplication"
+    name: "XCMS"
+    description: "LC-MS feature detection and preprocessing."
+    url: "https://bioconductor.org/packages/xcms"
+  - "@type": "SoftwareApplication"
+    name: "CAMERA"
+    description: "Annotation of LC-MS peaks / adducts and isotopes."
+    url: "https://bioconductor.org/packages/CAMERA"
+  - "@type": "SoftwareApplication"
+    name: "ProteoWizard"
+    description: "Mass-spectrometry data conversion (msConvert)."
+    url: "https://proteowizard.sourceforge.io/"
+  - "@type": "SoftwareApplication"
+    name: "SpiecEasi"
+    description: "Sparse cross-domain co-occurrence network inference."
+    url: "https://github.com/zdk123/SpiecEasi"
+  - "@type": "SoftwareApplication"
+    name: "vegan"
+    description: "Community ecology: diversity, ordination, PERMANOVA."
+    url: "https://cran.r-project.org/package=vegan"
+  - "@type": "SoftwareApplication"
+    name: "DESeq2"
+    description: "Differential abundance testing."
+    url: "https://bioconductor.org/packages/DESeq2"
+  - "@type": "SoftwareApplication"
+    name: "R"
+    description: "Statistical computing environment used for the analysis."
+    url: "https://www.r-project.org/"
+
+# Reproducible dataset used by the material.
+isBasedOn:
+  "@type": "Dataset"
+  name: "DIME dataset (preprocessed)"
+  url: "https://doi.org/10.6084/m9.figshare.29860841"

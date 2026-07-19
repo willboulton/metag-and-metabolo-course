@@ -1,0 +1,49 @@
+{% comment %}
+  Bioschemas TrainingMaterial (v1.0-RELEASE) JSON-LD.
+  https://bioschemas.org/profiles/TrainingMaterial/1.0-RELEASE
+
+  - Landing page  -> the whole-course LearningResource from _data/bioschemas.yml
+                     (emitted verbatim via `jsonify`).
+  - Module pages  -> a per-page LearningResource that isPartOf the course, built
+                     from the post's front matter with fallbacks to the course data.
+
+  Per-page front matter (all optional; sensible fallbacks applied):
+    description, keywords, teaches, competencyRequired,
+    learningResourceType, educationalLevel
+  Individual fields are passed through `jsonify` so quotes/newlines are escaped.
+{% endcomment %}
+{%- assign course = site.data.bioschemas -%}
+{%- if page.layout == 'course_page' -%}
+  {%- assign rel = page.url | remove_first: '/' -%}
+  {%- assign page_url = course.url | append: rel -%}
+  {%- assign kw = page.keywords | default: course.keywords -%}
+  {%- assign desc = page.description | default: course.description -%}
+  {%- assign lrt = page.learningResourceType | default: course.learningResourceType -%}
+  {%- assign elevel = page.educationalLevel | default: course.educationalLevel -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "http://purl.org/dc/terms/conformsTo": {"@type": "CreativeWork", "@id": "https://bioschemas.org/profiles/TrainingMaterial/1.0-RELEASE"},
+  "name": {{ page.title | strip_html | jsonify }},
+  "description": {{ desc | strip_html | jsonify }},
+  "url": {{ page_url | jsonify }},
+  "keywords": {{ kw | jsonify }},
+  "inLanguage": {{ course.inLanguage | jsonify }},
+  "license": {{ course.license | jsonify }},
+  {% if lrt %}"learningResourceType": {{ lrt | jsonify }},{% endif %}
+  {% if elevel %}"educationalLevel": {{ elevel | jsonify }},{% endif %}
+  {% if page.teaches %}"teaches": {{ page.teaches | jsonify }},{% endif %}
+  {% if page.competencyRequired %}"competencyRequired": {{ page.competencyRequired | jsonify }},{% endif %}
+  "isPartOf": {
+    "@type": "LearningResource",
+    "name": {{ course.name | jsonify }},
+    "url": {{ course.url | jsonify }}
+  }
+}
+</script>
+{%- elsif page.url == '/' or page.layout == 'index' -%}
+<script type="application/ld+json">
+{{ course | jsonify }}
+</script>
+{%- endif -%}

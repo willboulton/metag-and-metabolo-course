@@ -1,5 +1,7 @@
 ---
 title: "Introduction: Welcome to Metagenomics and Metabolomics"
+description: "What integrated metagenomics and metabolomics analysis is, the DIME case-study dataset, and who this course is for."
+learningResourceType: "reading"
 ---
 
 ## What is This Course About?

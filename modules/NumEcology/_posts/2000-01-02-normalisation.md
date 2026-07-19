@@ -1,5 +1,6 @@
 ---
 title: "Numerical Ecology: Building, Cleaning & Normalising the Feature Table"
+description: "Build a phyloseq object from LotuS2 output, strip contaminants, and normalise counts by rarefaction or composition."
 ---
 
 ## Overview

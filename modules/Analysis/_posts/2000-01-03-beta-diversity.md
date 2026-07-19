@@ -1,5 +1,6 @@
 ---
 title: "Analysis: Beta Diversity Ordination and Distance-Based Redundancy Analysis"
+description: "Reproduce PCoA and dbRDA ordinations showing how gut microbiome community structure responds to high- and low-bioactive diets."
 ---
 
 ## Overview

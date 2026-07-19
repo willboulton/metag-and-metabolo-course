@@ -1,5 +1,6 @@
 ---
 title: "Numerical Ecology: Alpha Diversity — Within-Sample Richness"
+description: "Visualise composition, estimate alpha diversity, and test group differences with parametric and non-parametric methods."
 ---
 
 ## Overview
