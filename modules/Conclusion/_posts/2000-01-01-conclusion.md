@@ -1,5 +1,7 @@
 ---
 title: "Conclusions and Next Steps"
+description: "Synthesising the results, key caveats, and how to apply the workflow to your own metagenomics and metabolomics data."
+learningResourceType: "reading"
 ---
 
 ## Congratulations! 

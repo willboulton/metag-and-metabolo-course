@@ -1,5 +1,6 @@
 ---
 title: "Analysis: Microbiome–Diet-SCFA Co-occurrence Network"
+description: "Build a SpiecEasi cross-domain co-occurrence network linking microbial taxa, dietary bioactives, and short-chain fatty acids."
 ---
 
 ## Introduction

@@ -1,5 +1,6 @@
 ---
 title: "Numerical Ecology: Differential Abundance with ALDEx2"
+description: "Find taxa that differ between treatments the compositionally-aware way: CLR-transform the counts, test, and rank hits by effect size."
 ---
 
 ## Overview
