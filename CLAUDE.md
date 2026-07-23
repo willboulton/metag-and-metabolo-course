@@ -10,13 +10,15 @@ Almost all substantive work here is **editing course content (Markdown)**, not c
 
 ## Running locally
 
-Preview with live reload at http://localhost:4000 :
+There is no local preview workflow in use — changes are verified by pushing to `gh-pages` and
+checking the live site at https://willboulton.github.io/metag-and-metabolo-course/ once GitHub
+Pages rebuilds (using the `github-pages` gem, see `Gemfile`). There is no test/lint/build step
+beyond Jekyll's own build.
 
-```bash
-docker compose up          # ruby:3.3 + `bundle install` + `jekyll serve --watch`
-```
-
-Gems are cached in `.bundler/` (bind-mounted). There is no test/lint/build step beyond Jekyll's own build — verify changes by loading the site in the browser. GitHub Pages rebuilds on push using the `github-pages` gem (see `Gemfile`).
+A `docker-compose.yml` exists (`ruby:3.3` + `bundle install` + `jekyll serve --watch` on
+http://localhost:4000, gems cached in `.bundler/`) if a local preview is ever wanted, but it
+isn't part of the normal workflow — don't assume it's been run, and don't propose using it
+unless asked.
 
 ## Content architecture
 
@@ -47,7 +49,9 @@ Every page emits [Bioschemas TrainingMaterial](https://bioschemas.org/profiles/T
 - `_includes/bioschemas.html` — included in `_layouts/base.html`'s `<head>`; branches on page type and builds a per-page `LearningResource` (`isPartOf` the course) from post front matter, with fallbacks to the course-level data. Absolute page URLs are built as `course.url + page.url` (the empty `baseurl` means `page.url` lacks the repo prefix).
 - Per-page front matter fields (all optional): `description`, `keywords`, `teaches`, `competencyRequired`, `learningResourceType`, `educationalLevel`.
 
-Recommended (non-blocking) enrichments are tracked in **[TODO.md](TODO.md)**, which also documents how to re-validate the JSON-LD after changes.
+To re-validate the JSON-LD after changes: push, wait for the live site to rebuild, then paste
+the page URL into the [schema.org validator](https://validator.schema.org/) or the
+[Bioschemas validator](https://validator.bioschemas.org/).
 
 ## Licensing
 

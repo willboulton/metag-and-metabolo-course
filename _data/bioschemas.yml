@@ -21,7 +21,7 @@ description: >-
   cross-domain network inference with SpiecEasi, and statistical analysis in R —
   combining conceptual explanation with runnable code.
 # Canonical public URL. Update if you rename the repo or use a custom domain.
-url: "https://toniher.github.io/metag-and-metabolo-course/"
+url: "https://willboulton.github.io/metag-and-metabolo-course/"
 keywords:
   - metagenomics
   - metabolomics
@@ -39,14 +39,37 @@ keywords:
 license: "https://creativecommons.org/licenses/by-sa/4.0/"
 inLanguage: "en"
 version: "1.0"
-dateModified: "2026-07-19"
+dateModified: "2026-07-23"
 learningResourceType: "tutorial"
 educationalLevel: "Intermediate"
 
 # Edit to your hosting institution / training programme.
 author:
-  - "@type": "Organization"
-    name: "GIBA course"
+  - "@type": "Person"
+    name: "William Boulton"
+    affiliation:
+      "@type": "Organization"
+      name: "Quadram Institute Biosciences"
+  - "@type": "Person"
+    name: "Falk Hildebrand"
+    affiliation:
+      "@type": "Organization"
+      name: "Quadram Institute Biosciences"
+  - "@type": "Person"
+    name: "Anthony Duncan"
+    affiliation:
+      "@type": "Organization"
+      name: "Quadram Institute Biosciences"
+  - "@type": "Person"
+    name: "Kaden Muffett"
+    affiliation:
+      "@type": "Organization"
+      name: "Quadram Institute Biosciences"
+  - "@type": "Person"
+    name: "Ezgi Özkurt"
+    affiliation:
+      "@type": "Organization"
+      name: "Quadram Institute Biosciences"
 
 audience:
   "@type": "EducationalAudience"
@@ -78,7 +101,7 @@ mentions:
   - "@type": "SoftwareApplication"
     name: "MATAFILER4"
     description: "MAG recovery pipeline for short-read shotgun metagenomics (HPC)."
-    url: "https://github.com/hildebra/MATAFILER"
+    url: "https://github.com/hildebra/MATAFILER4"
   - "@type": "SoftwareApplication"
     name: "XCMS"
     description: "LC-MS feature detection and preprocessing."
